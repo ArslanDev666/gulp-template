@@ -1,0 +1,50 @@
+// Миксин для создания font-face шрифта
+@use 'sass:string';
+@use 'sass:map';
+@use 'sass:list';
+
+@function str-replace($string, $search, $replace: '') {
+  $index: string.index($string, $search);
+
+  @if $index {
+    // stylelint-disable-next-line scss/operator-no-newline-after
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+  $src: null;
+  /* stylelint-disable scss/function-no-unknown */
+  $extmods: (
+    eot: '?',
+    svg: '#' + str-replace($name, ' ', '_'),
+  );
+  /* stylelint-enable scss/function-no-unknown */
+  $formats: (
+    otf: 'opentype',
+    ttf: 'truetype',
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map.has-key($extmods, $ext), $ext + map.get($extmods, $ext), $ext);
+    $format: if(map.has-key($formats, $ext), map.get($formats, $ext), $ext);
+    /* stylelint-disable function-url-quotes */
+    $src: list.append(
+      $src,
+      url(string.quote($path + '.' + $extmod)) format(string.quote($format)),
+      comma
+    );
+    /* stylelint-enable function-url-quotes */
+  }
+
+  @font-face {
+    font-weight: $weight;
+    font-family: string.quote($name);
+    font-style: $style;
+    src: $src;
+    font-display: swap;
+  }
+}

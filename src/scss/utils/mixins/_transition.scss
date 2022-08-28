@@ -1,0 +1,27 @@
+// Миксины для transition свойства
+
+@use 'sass:list';
+
+$ease1: ease-out;
+
+@mixin _transition($prop, $time, $easing: $ease1, $delay: 0s) {
+  $transition: ();
+  @for $i from 1 through length($prop) {
+    @for $j from 0 to (length($prop)) - (length($time)) {
+      $time: list.join($time, list.nth($time, -1));
+    }
+    @for $j from 0 to (length($prop)) - (length($easing)) {
+      $easing: list.join($easing, list.nth($easing, -1));
+    }
+    @for $j from 0 to (length($prop)) - (length($delay)) {
+      $delay: list.join($delay, list.nth($delay, -1));
+    }
+
+    $transition: list.append(
+      $transition,
+      (list.nth($prop, $i) list.nth($time, $i) list.nth($easing, $i) list.nth($delay, $i)),
+      $separator: comma
+    );
+  }
+  transition: $transition;
+}

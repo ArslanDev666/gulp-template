@@ -1,0 +1,7 @@
+// Миксин для контейнера
+
+@mixin _layoutContainer {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+}

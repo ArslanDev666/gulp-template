@@ -1,0 +1,53 @@
+@import './utils/variables/fonts';
+@import './utils/variables/vars';
+@import './utils/mixins/typography';
+
+@import './assets/fonts.scss';
+@import './assets/themes.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--text-color);
+  font-family: $main-font;
+
+  background: var(--accent-color);
+  @include _styleFontMontserratRegular;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+button {
+  font-family: $main-font;
+
+  cursor: pointer;
+}

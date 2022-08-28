@@ -1,0 +1,80 @@
+{
+  "name": "gulp-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.mjs",
+  "scripts": {
+    "gulp": "cross-env NODE_ENV=development gulp",
+    "dev": "cross-env NODE_ENV=development gulp watch",
+    "build": "cross-env NODE_ENV=production gulp build",
+    "pre-commit": "lint-staged",
+    "lint": "yarn lint:css & yarn lint:js & yarn lint:prettier",
+    "lint:css": "stylelint \"**/*.{scss,sass,css}\" --fix -f verbose",
+    "lint:js": "eslint --fix src/**/*.{js,ts}",
+    "lint:prettier": "prettier --write src/**/*.{js,ts,json,css,scss,md}"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.18.13",
+    "@babel/preset-env": "^7.18.10",
+    "autoprefixer": "9.0.0",
+    "babel-loader": "^8.2.5",
+    "browser-sync": "^2.27.10",
+    "chrome-launcher": "^0.15.1",
+    "cross-env": "^7.0.3",
+    "del": "^7.0.0",
+    "dotenv": "^16.0.1",
+    "eslint": "^8.0.1",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-cache-bust": "^1.4.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-dart-sass": "^1.0.2",
+    "gulp-file-include": "^2.3.0",
+    "gulp-html-bem-validator": "^1.0.5",
+    "gulp-if": "^3.0.0",
+    "gulp-imagemin": "^8.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "imagemin-svgo": "^10.0.1",
+    "lighthouse": "^9.6.6",
+    "lint-staged": "^13.0.3",
+    "postcss": "^8.4.16",
+    "prettier": "^2.7.1",
+    "stylelint": "^14.11.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^28.0.0",
+    "stylelint-config-standard-scss": "^5.0.0",
+    "stylelint-order": "^5.0.0",
+    "stylelint-prettier": "^2.0.0",
+    "stylelint-scss": "^4.3.0",
+    "webpack": "^5.74.0",
+    "webpack-stream": "^7.0.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,json,css,scss,md}": "prettier --write --ignore-unknown",
+    "*.{scss,sass,css}": "stylelint \"**/*.{scss,sass,css}\" --fix -f verbose",
+    "*.{js,ts}": "eslint --fix"
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome version",
+      "last 2 firefox version",
+      "last 2 safari version"
+    ],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ]
+  },
+  "dependencies": {}
+}
